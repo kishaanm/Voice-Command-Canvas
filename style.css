@@ -1,7 +1,7 @@
 body
 {
 	text-align: center;
-    background-color: rgb(255, 199, 95);
+    background-color: aquamarine;
 }
 span
 {
@@ -10,6 +10,7 @@ span
 }
 canvas
 {
-	background: pink;
+	background-color: pink;
+	border-color: orange;
 	border-radius: 20px;
 }

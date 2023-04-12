@@ -1,15 +1,29 @@
+x = 0;
+y = 0;
 screenWidth = 0;
 screenHeight = 0;
-apple.png = empty;
-speak_data = empty;
-to_number = empty;
+apple = "";
+speak_data = "";
+to_number = 0;
 
 
 function preload(){
     loadImage("apple.png");
 }
 
+var SpeechRecognition = window.webkitSpeechRecognition;
+  
+var recognition = new SpeechRecognition();
+
 to_number = Number(content);
+
+recognition.onresult = function(event){ 
+
+console.log(event); 
+  
+var content = event.results[0][0].transcript;
+
+document.getElementById("status").innerHTML = "The Speech has been recognized as: " + content; 
 
 if(Number.isInteger(to_number)){
     document.getElementById("status").innerHTML = "Started drawing apple";
@@ -18,11 +32,14 @@ if(Number.isInteger(to_number)){
 else{
     document.getElementById("status").innerHTML = "The speech has not recognized your number";
 }
+} 
+
 
 function setup(){
     screenWidth = window.innerWidth;
     canvas = CreateCanvas(150, 150);
     canvas.position(0, 150)
+    canvas.center;
 }
 
 function draw(){
@@ -55,7 +72,7 @@ function take_snapshot(){
 }
 
 function start(){
-    document.getElementById("textbox").innerHTML = "";
+    document.getElementById("status").innerHTML = "System is listening: Please Speak";
     recognition.start();
 }
 
